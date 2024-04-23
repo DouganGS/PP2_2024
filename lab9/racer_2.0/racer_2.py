@@ -45,7 +45,7 @@ while True:
         screen.blit(bg, (0, bg_y))
         screen.blit(bg, (0, bg_y - H))
         screen.blit(player.image, player.rect)
-        player.update()
+        player.update(gameplay)
         #coins
         spawn_timer -= 1
         if spawn_timer <= 0:

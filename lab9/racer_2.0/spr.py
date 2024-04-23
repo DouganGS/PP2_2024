@@ -19,17 +19,22 @@ class Player(pygame.sprite.Sprite):
         self.image = surf
         self.rect = self.image.get_rect(topleft=(x, y))
 
-    def update(self):
+    def update(self,gameplay):
+        self.gameplay = gameplay
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and self.rect.x >= 121:
+        if keys[pygame.K_LEFT]:
             self.rect.x -= 10
-        elif keys[pygame.K_RIGHT] and self.rect.x <= 463-self.image.get_width():
+        elif keys[pygame.K_RIGHT]:
             self.rect.x += 10
-        
+        if keys[pygame.K_LEFT] and self.rect.x < 121: #463 
+            gameplay = False
+        elif keys[pygame.K_RIGHT] and self.rect.x > 463-self.image.get_width():
+            gameplay = False
         if keys[pygame.K_UP]:
             self.rect.y -= 10    
         elif keys[pygame.K_DOWN]:
             self.rect.y += 10
+        
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
